@@ -68,6 +68,9 @@ public:
    }
    void swap(set& rhs) noexcept
    {
+       auto tempRoot = rhs.bst; 
+       rhs.bst = bst;
+       bst = tempRoot;
    }
 
    //
@@ -239,13 +242,15 @@ private:
 template <typename T>
 bool operator == (const set <T> & lhs, const set <T> & rhs)
 {
-   return true;
+    return lhs == rhs;
+   //return true;
 }
 
 template <typename T>
 inline bool operator != (const set <T> & lhs, const set <T> & rhs)
 {
-   return true;
+   return lhs != rhs;
+   //return true;
 }
 
 /***********************************************
@@ -255,13 +260,15 @@ inline bool operator != (const set <T> & lhs, const set <T> & rhs)
 template <typename T>
 bool operator < (const set <T> & lhs, const set <T> & rhs)
 {
-   return true;
+    return lhs < rhs;
+   //return true;
 }
 
 template <typename T>
 inline bool operator > (const set <T> & lhs, const set <T> & rhs)
 {
-   return true;
+    return lhs > rhs;
+   //return true;
 }
 
 }; // namespace custom
