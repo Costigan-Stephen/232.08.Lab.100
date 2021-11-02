@@ -43,7 +43,7 @@ public:
    set() : bst(){} // Default Constructor
    set(const set &  rhs) : bst(std::move(rhs.bst)){} // Move constructor
    set(set && rhs) : bst(rhs.bst){} // Copy Constructor
-   set(const std::initializer_list <T> & il) {clear(); *this = il;} // Initilizer List and Range constructor. (Might need tweaked to allow successive insertions)
+   set(const std::initializer_list <T> & il) { *this = il;} // Initilizer List and Range constructor. (Might need tweaked to allow successive insertions)
    template <class Iterator>
    set(Iterator first, Iterator last) 
    {
@@ -56,15 +56,18 @@ public:
 
    set & operator = (const set & rhs)
    {
-      return *this;
+       bst = rhs.bst;
+       return *this;
    }
    set & operator = (set && rhs)
    {
-      return *this;
+       bst = rhs.bst;
+       return *this;
    }
    set & operator = (const std::initializer_list <T> & il)
    {
-      return *this;
+       insert(il);
+       return *this;
    }
    void swap(set& rhs) noexcept
    {
@@ -122,8 +125,11 @@ public:
    }
    void insert(const std::initializer_list <T>& il)
    {
+       for (T t : il) {
+           insert(t);
+       }
    }
-   template <class Iterator>
+   template <class Iterator> // Shaun
    void insert(Iterator first, Iterator last)
    {
    }
@@ -136,19 +142,19 @@ public:
    { 
        bst.clear();
    }
-   iterator erase(iterator &it)
+   iterator erase(iterator &it) // Steve
    { 
       return iterator(); 
    }
-   size_t erase(const T & t) 
+   size_t erase(const T & t) // Jon
    {
       return 99;
    }
-   iterator erase(iterator &itBegin, iterator &itEnd)
+   iterator erase(iterator &itBegin, iterator &itEnd) // Alex
    {
       return iterator();
    }
-
+    
 #ifdef DEBUG // make this visible to the unit tests
 public:
 #else
@@ -171,22 +177,24 @@ public:
     iterator() { it = nullptr; }
     iterator(const typename custom::BST<T>::iterator& itRHS) { it = itRHS; }
     iterator(const iterator& rhs) { it = rhs.it; }
-   iterator & operator = (const iterator & rhs)
-   {
+    iterator & operator = (const iterator & rhs)
+    {
        it = rhs.it;
        return *this;
-   }
+    }
 
 
-   // These lower the % for some reason
+   
    // equals, not equals operator
    bool operator != (const iterator & rhs) const 
    { 
-      return it != rhs.it ? true : false; 
+      return it != rhs.it; 
+      //return true;
    }
-   bool operator == (const iterator & rhs) const 
+   bool operator == (const iterator & rhs) const // lowers the % for some reason
    { 
-      return it == rhs.it ? true : false;
+      return it == rhs.it;
+      //return true;
    }
 
    // dereference operator: by-reference so we can modify the Set
