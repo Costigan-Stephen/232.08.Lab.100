@@ -183,18 +183,15 @@ public:
        return *this;
     }
 
-
    
    // equals, not equals operator
    bool operator != (const iterator & rhs) const 
    { 
       return it != rhs.it; 
-      //return true;
    }
    bool operator == (const iterator & rhs) const // lowers the % for some reason
    { 
       return it == rhs.it;
-      //return true;
    }
 
    // dereference operator: by-reference so we can modify the Set
@@ -251,14 +248,12 @@ template <typename T>
 bool operator == (const set <T> & lhs, const set <T> & rhs)
 {
     return lhs == rhs;
-   //return true;
 }
 
 template <typename T>
 inline bool operator != (const set <T> & lhs, const set <T> & rhs)
 {
    return lhs != rhs;
-   //return true;
 }
 
 /***********************************************
@@ -269,14 +264,12 @@ template <typename T>
 bool operator < (const set <T> & lhs, const set <T> & rhs)
 {
     return lhs < rhs;
-   //return true;
 }
 
 template <typename T>
 inline bool operator > (const set <T> & lhs, const set <T> & rhs)
 {
     return lhs > rhs;
-   //return true;
 }
 
 }; // namespace custom
