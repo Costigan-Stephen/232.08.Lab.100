@@ -129,8 +129,9 @@ public:
    //
    // Remove
    //
-   void clear() noexcept 
+   void clear() noexcept
    { 
+       bst.clear();
    }
    iterator erase(iterator &it)
    { 
@@ -164,58 +165,62 @@ class set <T> :: iterator
 {
 public:
    // constructors, destructors, and assignment operator
-   iterator() 
-   { 
-   }
-   iterator(const typename custom::BST<T>::iterator& itRHS) 
-   {  
-   }
-   iterator(const iterator & rhs) 
-   { 
-   }
+    iterator() { it = nullptr; }
+    iterator(const typename custom::BST<T>::iterator& itRHS) { it = itRHS; }
+    iterator(const iterator& rhs) { it = rhs.it; }
    iterator & operator = (const iterator & rhs)
    {
-      return *this;
+       it = rhs.it;
+       return *this;
    }
 
+
+   // These lower the % for some reason
    // equals, not equals operator
    bool operator != (const iterator & rhs) const 
    { 
-      return true; 
+      return it != rhs.it ? true : false; 
    }
    bool operator == (const iterator & rhs) const 
    { 
-      return true; 
+      return it == rhs.it ? true : false;
    }
 
    // dereference operator: by-reference so we can modify the Set
    const T & operator * () const 
-   { 
-      return *(new T); 
+   {  
+      //return *(new T); 
+      return *it;
    }
 
    // prefix increment
    iterator & operator ++ ()
    {
+       it++;
       return *this;
    }
 
    // postfix increment
    iterator operator++ (int postfix)
    {
-      return *this;
+       auto oldit = it;
+       it++;
+       return oldit;
    }
    
    // prefix decrement
    iterator & operator -- ()
    {
+       it--;
       return *this;
    }
    
    // postfix decrement
    iterator operator-- (int postfix)
    {
-      return *this;
+       auto oldit = it;
+       it--;
+       return oldit;
    }
    
 #ifdef DEBUG // make this visible to the unit tests
