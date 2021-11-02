@@ -40,23 +40,15 @@ public:
    // 
    // Construct
    //
-   set() 
-   { 
-   }
-   set(const set &  rhs)
-   { 
-   }
-   set(set && rhs) 
-   { 
-   }
-   set(const std::initializer_list <T> & il) 
-   {
-   }
+   set() : bst(){} // Default Constructor
+   set(const set &  rhs) : bst(std::move(rhs.bst)){} // Move constructor
+   set(set && rhs) : bst(rhs.bst){} // Copy Constructor
+   set(const std::initializer_list <T> & il) {clear(); *this = il;} // Initilizer List and Range constructor. (Might need tweaked to allow successive insertions)
    template <class Iterator>
    set(Iterator first, Iterator last) 
    {
    }
-  ~set() { }
+   ~set() {}
 
    //
    // Assign
@@ -85,11 +77,11 @@ public:
    class iterator;
    iterator begin() const noexcept 
    { 
-      return iterator(); 
+      return iterator(bst.begin());
    }
    iterator end() const noexcept 
    { 
-      return iterator(); 
+      return iterator(bst.end());
    }
 
    //
