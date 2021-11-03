@@ -45,8 +45,10 @@ public:
    set(set && rhs) : bst(rhs.bst){} // Copy Constructor
    set(const std::initializer_list <T> & il) { *this = il;} // Initilizer List and Range constructor. (Might need tweaked to allow successive insertions)
    template <class Iterator>
-   set(Iterator first, Iterator last) 
+   set(Iterator first, Iterator last)
    {
+       for (auto c = first; c != last; c++) // This will likely work when insert works.
+           insert(*c);
    }
    ~set() {}
 
@@ -61,7 +63,8 @@ public:
    }
    set & operator = (set && rhs)
    {
-       bst = rhs.bst;
+       clear();
+       swap(rhs);
        return *this;
    }
    set & operator = (const std::initializer_list <T> & il)
@@ -144,6 +147,7 @@ public:
    }
    iterator erase(iterator &it) // Steve
    { 
+      erase(*it); // This will likely work when clear works.
       return iterator(); 
    }
    size_t erase(const T & t) // Jon
@@ -152,6 +156,8 @@ public:
    }
    iterator erase(iterator &itBegin, iterator &itEnd) // Alex
    {
+       for (auto c = itBegin; c != itEnd; c++)
+           erase(*c);
       return iterator();
    }
     
