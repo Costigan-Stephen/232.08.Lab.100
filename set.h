@@ -42,6 +42,7 @@ public:
    //
    set() : bst(){} // Default Constructor
    set(const set &  rhs) : bst(std::move(rhs.bst)){} // Move constructor
+   
    set(set && rhs) : bst(rhs.bst){} // Copy Constructor
    set(const std::initializer_list <T> & il) { *this = il;} // Initilizer List and Range constructor. (Might need tweaked to allow successive insertions)
    template <class Iterator>
@@ -170,6 +171,11 @@ public:
        //    }
        //it = nullptr;
        //return 1;
+       /*if (data[index] != *it)
+           index++;
+       for (int i = 0; i < (size() - index); i++)
+           data[index + 1] = data[index + i + 1];
+           numElements--;*/
 
       return 99;
    }
