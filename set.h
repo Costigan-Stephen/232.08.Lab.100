@@ -135,6 +135,12 @@ public:
    template <class Iterator> // Shaun
    void insert(Iterator first, Iterator last)
    {
+      // set.initializer - list - insert(il)
+      //     FOR element IN il
+      //     insert(element)
+       for (auto c = first; c != last; c++)
+           insert(*c);
+       
    }
 
 
@@ -152,6 +158,19 @@ public:
    }
    size_t erase(const T & t) // Jon
    {
+       //set.element - erase(element)
+       //    it <- find(element)
+       //    IF it = end()
+       //    RETURN 0
+       //    erase(it)
+       //    RETURN 1
+       //iterator it = find(t);
+       //    if (it == it) {
+       //        return 0;
+       //    }
+       //it = nullptr;
+       //return 1;
+
       return 99;
    }
    iterator erase(iterator &itBegin, iterator &itEnd) // Alex

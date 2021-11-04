@@ -44,7 +44,7 @@ public:
       test_constructRange_standard();
       test_destructor_empty();
       test_destructor_standard();
-
+      
       // Assign
       test_assign_emptyToEmpty();
       test_assign_standardToEmpty();
@@ -68,8 +68,8 @@ public:
       test_swap_standardToEmpty();
       test_swap_emptyToStandard();
       test_swap_standardToStandard();
-
-
+      
+      
       // Iterator
       test_begin_empty();
       test_begin_standard();
@@ -81,13 +81,13 @@ public:
       test_iterator_increment_standardToDone();
       test_iterator_increment_standardEnd();
       test_iterator_dereference_standardRead();
-
+      
       // Access
       test_find_empty();
       test_find_standardBegin();
       test_find_standardLast();
       test_find_standardMissing();
-
+      
       // Insert
       test_insert_empty();
       test_insert_standardEnd();
@@ -104,11 +104,11 @@ public:
       test_insertInit_standardInsertNone();
       test_insertInit_standardInsertDuplicates();
       test_insertInit_manyInsertMany();
-
+      
       // Remove
       test_clear_empty();
       test_clear_standard();
-      test_eraseRange_several();
+      test_eraseRange_several(); // this one shaun
       test_eraseIterator_empty();
       test_eraseIterator_standardMissing();
       test_eraseIterator_noChildren();
@@ -124,8 +124,8 @@ public:
       test_eraseRange_standardMany();
       test_eraseRange_oneChild();
       test_eraseRange_twoChildren();
-
-
+      
+      
       // Status
       test_empty_empty();
       test_empty_standard();
