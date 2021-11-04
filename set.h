@@ -171,11 +171,25 @@ public:
        //    }
        //it = nullptr;
        //return 1;
-       /*if (data[index] != *it)
+       
+       /*
+       int index = 0;
+       if (data[index] != *it)
            index++;
        for (int i = 0; i < (size() - index); i++)
            data[index + 1] = data[index + i + 1];
-           numElements--;*/
+           numElements--;
+        */
+      /* set.element - erase(element) 
+       {
+           find(element) = it;
+           if (it = end()) {
+               return 0;
+           }
+           erase(it);
+           return 1;
+
+       }*/
 
       return 99;
    }
