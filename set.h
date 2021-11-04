@@ -59,8 +59,10 @@ public:
 
    set & operator = (const set & rhs)
    {
-       bst = rhs.bst;
-       return *this;
+      bst = rhs.bst;
+      if (bst.root == nullptr)
+          clear();
+      return *this;
    }
    set & operator = (set && rhs)
    {
@@ -70,7 +72,10 @@ public:
    }
    set & operator = (const std::initializer_list <T> & il)
    {
-       insert(il);
+       clear();
+       for (T t : il) {
+           insert(t);
+       }
        return *this;
    }
    void swap(set& rhs) noexcept
@@ -120,6 +125,9 @@ public:
    std::pair<iterator, bool> insert(const T& t)
    {
       std::pair<iterator, bool> p(iterator(), true);
+     /* if (bst.find(t) == nullptr)
+          bst.insert(p);*/
+      
       return p;
    }
    std::pair<iterator, bool> insert(T&& t)
@@ -130,7 +138,7 @@ public:
    void insert(const std::initializer_list <T>& il)
    {
        for (T t : il) {
-           insert(t);
+          insert(t);
        }
    }
    template <class Iterator> // Shaun
