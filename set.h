@@ -41,10 +41,12 @@ public:
    // Construct
    //
    set() : bst(){} // Default Constructor
-   set(const set &  rhs) : bst(rhs.bst){} // Copy constructor
+   set(const set &  rhs) : bst(rhs.bst) {
+    
+   } // Move constructor
    
-   set(set && rhs) : bst(std::move(rhs.bst)) {} // Move Constructor
-   set(const std::initializer_list <T> & il) {*this = il;} // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
+   set(set && rhs) : bst(std::move(rhs.bst)){}                        // Copy Constructor
+   set(const std::initializer_list <T> & il) { *this = il; } // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
    template <class Iterator>
    set(Iterator first, Iterator last)
    {
@@ -64,6 +66,7 @@ public:
           clear();
       return *this;
    }
+
    set & operator = (set && rhs)
    {
        clear();
@@ -78,7 +81,6 @@ public:
        
        return *this;
    }
-
    void swap(set& rhs) noexcept
    {
        auto tempRoot = rhs.bst; 
@@ -123,34 +125,18 @@ public:
    //
    // Insert
    //
-   std::pair<iterator, bool> insert(const T& t) //copy
+   std::pair<iterator, bool> insert(const T& t)
    {
-       //set.copy - insert(element)
-       //    bst_pair = bst.insert(element, keepUnique)
-       //    RETURN pair(set.iterator(bst_pair.first), bst_pair.second)
-        
-      //std::pair<iterator, bool> p(iterator(), true); 
-     /* if (bst.find(t) == nullptr)
-          bst.insert(p);*/
-      auto bst_pair = bst.insert(t, true);
-      //std::pair<iterator, bool> p(bst_pair, true);
-
-      return bst_pair;
-      //return p;
-   }
-   std::pair<iterator, bool> insert(T&& t) //move
-   {
-      // set.move - insert(element)
-      //     bst_pair = bst.insert(move(element), keepUnique)
-      //     RETURN pair(set.iterator(bst_pair.first), bst_pair.second)
+      std::pair<iterator, bool> p(iterator(), true); 
+      /*if (bst.find(t) == nullptr)
+          bst.insert(t, true);*/
       
-      //std::pair<iterator, bool> p(iterator(), true);
-       //auto bst_pair;
-
-       auto bst_pair = bst.insert(std::move(t), true);
-       //std::pair<iterator, bool> p(bst_pair, true);
-
-      return bst_pair;
+      return p;//u been here
+   }
+   std::pair<iterator, bool> insert(T&& t)
+   {
+      std::pair<iterator, bool> p(iterator(), true);
+      return p;
    }
    void insert(const std::initializer_list <T>& il)
    {
@@ -165,7 +151,7 @@ public:
       //     FOR element IN il
       //     insert(element)
        for (auto c = first; c != last; c++)
-           insert(*c);//this should work with insert like everything else
+           insert(*c);
        
    }
 
@@ -179,7 +165,7 @@ public:
    }
    iterator erase(iterator &it) // Steve
    { 
-      erase(*it); // This will likely work when clear works.
+      erase(*it); // This will likely work when erase works.
       return iterator(); 
    }
    size_t erase(const T & t) // Jon
@@ -246,7 +232,7 @@ public:
    // constructors, destructors, and assignment operator
     iterator() { it = nullptr; }
     iterator(const typename custom::BST<T>::iterator& itRHS) { it = itRHS; }
-    iterator(const iterator& rhs) { it = rhs.it; }
+    iterator(const iterator& rhs) { it = rhs.it; } 
     iterator & operator = (const iterator & rhs)
     {
        it = rhs.it;
