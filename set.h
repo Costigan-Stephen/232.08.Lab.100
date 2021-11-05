@@ -162,8 +162,11 @@ namespace custom
         }
         iterator erase(iterator& it) // Steve
         {
-            //erase(*it); // This will likely work when erase works.
-            return iterator();
+            // do nothing if there is nothing to do
+            if (it == end())
+                return end(); 
+
+            return it;
         }
         size_t erase(const T& t) // Jon
         {
