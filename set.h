@@ -44,7 +44,19 @@ public:
    set(const set &  rhs) : bst(std::move(rhs.bst)){} // Move constructor
    
    set(set && rhs) : bst(rhs.bst){} // Copy Constructor
-   set(const std::initializer_list <T> & il) { *this = il;} // Initilizer List and Range constructor. (Might need tweaked to allow successive insertions)
+   set(const std::initializer_list <T> & il) { 
+       // pg 456
+       // clear()
+       //    FOR element IN rhs
+       //    insert(element)
+
+       clear();
+       //for (auto c = il; c == il.end; c++)
+       //    insert(il);
+       for (int i = 0; i == il.size(); i++)
+           insert(il);
+       //*this = il;
+   } // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
    template <class Iterator>
    set(Iterator first, Iterator last)
    {
@@ -128,7 +140,7 @@ public:
       /*if (bst.find(t) == nullptr)
           bst.insert(t, true);*/
       
-      return p;
+      return p;//u been here
    }
    std::pair<iterator, bool> insert(T&& t)
    {
