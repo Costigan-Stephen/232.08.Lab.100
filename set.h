@@ -50,7 +50,7 @@ public:
    {
        for (auto c = first; c != last; c++) // This will likely work when insert works.
            insert(*c);
-   } 
+   }
    ~set() {}
 
    //
