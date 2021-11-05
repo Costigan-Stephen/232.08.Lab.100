@@ -162,7 +162,7 @@ namespace custom
         }
         iterator erase(iterator& it) // Steve
         {
-            erase(*it); // This will likely work when erase works.
+            //erase(*it); // This will likely work when erase works.
             return iterator();
         }
         size_t erase(const T& t) // Jon
@@ -188,17 +188,16 @@ namespace custom
                 data[index + 1] = data[index + i + 1];
                 numElements--;
              */
-             /* set.element - erase(element)
-              {
-                  find(element) = it;
-                  if (it = end()) {
-                      return 0;
-                  }
-                  erase(it);
-                  return 1;
-              }*/
-
-            return 99;
+           
+            
+            iterator it = bst.find(t);
+               if (it == end()) 
+               {
+                   return 0;
+               }
+               erase(it);
+               return 1;
+              
         }
         iterator erase(iterator& itBegin, iterator& itEnd) // Alex
         {
