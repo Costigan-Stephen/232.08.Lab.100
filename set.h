@@ -157,11 +157,7 @@ namespace custom
         }
         iterator erase(iterator& it) // Steve
         {
-            // do nothing if there is nothing to do
-            if (it == end())
-                return end(); 
-
-            return it;
+            return iterator(bst.erase(it.it));
         }
         size_t erase(const T& t) // Jon
         {
@@ -174,9 +170,9 @@ namespace custom
         }
         iterator erase(iterator& itBegin, iterator& itEnd) // Alex
         {
-            for (auto c = itBegin; c != itEnd; c++)
-                erase(*c);
-            return iterator();
+            while (itBegin != itEnd)
+                itBegin = erase(itBegin);
+            return itEnd; 
         }
 
 #ifdef DEBUG // make this visible to the unit tests
