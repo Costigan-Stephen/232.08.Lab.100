@@ -50,7 +50,7 @@ public:
    {
        for (auto c = first; c != last; c++) // This will likely work when insert works.
            insert(*c);
-   } 
+   }
    ~set() {}
 
    //
@@ -125,8 +125,8 @@ public:
    std::pair<iterator, bool> insert(const T& t)
    {
       std::pair<iterator, bool> p(iterator(), true); 
-     /* if (bst.find(t) == nullptr)
-          bst.insert(p);*/
+      /*if (bst.find(t) == nullptr)
+          bst.insert(t, true);*/
       
       return p;
    }
