@@ -158,7 +158,7 @@ public:
           insert(t);
 
    }
-   template <class Iterator> // Shaun
+   template <class Iterator> // Shaun DONE
    void insert(Iterator first, Iterator last)
    {
       // set.initializer - list - insert(il)
