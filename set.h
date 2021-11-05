@@ -41,22 +41,12 @@ public:
    // Construct
    //
    set() : bst(){} // Default Constructor
-   set(const set &  rhs) : bst(std::move(rhs.bst)){} // Move constructor
+   set(const set &  rhs) : bst(rhs.bst) {
+    
+   } // Move constructor
    
-   set(set && rhs) : bst(rhs.bst){} // Copy Constructor
-   set(const std::initializer_list <T> & il) { 
-       // pg 456
-       // clear()
-       //    FOR element IN rhs
-       //    insert(element)
-
-       clear();
-       //for (auto c = il; c == il.end; c++)
-       //    insert(il);
-       for (int i = 0; i == il.size(); i++)
-           insert(il);
-       //*this = il;
-   } // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
+   set(set && rhs) : bst(std::move(rhs.bst)){}                        // Copy Constructor
+   set(const std::initializer_list <T> & il) { *this = il; } // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
    template <class Iterator>
    set(Iterator first, Iterator last)
    {
@@ -76,6 +66,7 @@ public:
           clear();
       return *this;
    }
+
    set & operator = (set && rhs)
    {
        clear();
@@ -174,7 +165,7 @@ public:
    }
    iterator erase(iterator &it) // Steve
    { 
-      erase(*it); // This will likely work when clear works.
+      erase(*it); // This will likely work when erase works.
       return iterator(); 
    }
    size_t erase(const T & t) // Jon
@@ -241,7 +232,7 @@ public:
    // constructors, destructors, and assignment operator
     iterator() { it = nullptr; }
     iterator(const typename custom::BST<T>::iterator& itRHS) { it = itRHS; }
-    iterator(const iterator& rhs) { it = rhs.it; }
+    iterator(const iterator& rhs) { it = rhs.it; } 
     iterator & operator = (const iterator & rhs)
     {
        it = rhs.it;
