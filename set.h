@@ -46,11 +46,11 @@ namespace custom
         } // Move constructor
 
         set(set&& rhs) : bst(std::move(rhs.bst)) {}                        // Copy Constructor
-        set(const std::initializer_list <T>& il) { *this = il; } // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
+        set(const std::initializer_list <T>& il) { *this = il; }           // Initilizer List and Range constructor. (Needs tweaked to allow successive insertions)
         template <class Iterator>
         set(Iterator first, Iterator last)
         {
-            for (auto c = first; c != last; c++) // This will likely work when insert works.
+            for (auto c = first; c != last; c++)                           // This will likely work when insert works.
                 insert(*c);
         }
         ~set() {}
@@ -139,17 +139,12 @@ namespace custom
         {
             for (T t : il)
                 insert(t);
-
         }
         template <class Iterator> // Shaun DONE
         void insert(Iterator first, Iterator last)
         {
-            // set.initializer - list - insert(il)
-            //     FOR element IN il
-            //     insert(element)
             for (auto c = first; c != last; c++)
                 insert(*c);
-
         }
 
 
@@ -170,37 +165,12 @@ namespace custom
         }
         size_t erase(const T& t) // Jon
         {
-            //set.element - erase(element)
-            //    it <- find(element)
-            //    IF it = end()
-            //    RETURN 0
-            //    erase(it)
-            //    RETURN 1
-            //iterator it = find(t);
-            //    if (it == it) {
-            //        return 0;
-            //    }
-            //it = nullptr;
-            //return 1;
-
-            /*
-            int index = 0;
-            if (data[index] != *it)
-                index++;
-            for (int i = 0; i < (size() - index); i++)
-                data[index + 1] = data[index + i + 1];
-                numElements--;
-             */
-           
-            
             iterator it = bst.find(t);
-               if (it == end()) 
-               {
-                   return 0;
-               }
-               erase(it);
-               return 1;
-              
+            if (it == end()) 
+                return 0;
+
+            erase(it);
+            return 1;
         }
         iterator erase(iterator& itBegin, iterator& itEnd) // Alex
         {
@@ -251,7 +221,6 @@ namespace custom
         // dereference operator: by-reference so we can modify the Set
         const T& operator * () const
         {
-            //return *(new T); 
             return *it;
         }
 
