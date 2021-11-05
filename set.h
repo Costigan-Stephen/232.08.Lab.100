@@ -50,7 +50,7 @@ public:
    {
        for (auto c = first; c != last; c++) // This will likely work when insert works.
            insert(*c);
-   }
+   } 
    ~set() {}
 
    //
@@ -73,9 +73,9 @@ public:
    set & operator = (const std::initializer_list <T> & il)
    {
        clear();
-       for (T t : il) {
+       for (T t : il)
            insert(t);
-       }
+       
        return *this;
    }
    void swap(set& rhs) noexcept
@@ -124,7 +124,7 @@ public:
    //
    std::pair<iterator, bool> insert(const T& t)
    {
-      std::pair<iterator, bool> p(iterator(), true);
+      std::pair<iterator, bool> p(iterator(), true); 
      /* if (bst.find(t) == nullptr)
           bst.insert(p);*/
       
@@ -137,9 +137,9 @@ public:
    }
    void insert(const std::initializer_list <T>& il)
    {
-       for (T t : il) {
+       for (T t : il)
           insert(t);
-       }
+
    }
    template <class Iterator> // Shaun
    void insert(Iterator first, Iterator last)
@@ -203,8 +203,8 @@ public:
    }
    iterator erase(iterator &itBegin, iterator &itEnd) // Alex
    {
-       for (auto c = itBegin; c != itEnd; c++)
-           erase(*c);
+      for (auto c = itBegin; c != itEnd; c++)
+         erase(*c);
       return iterator();
    }
     
